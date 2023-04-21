@@ -1,0 +1,382 @@
+//Cho mảng gồm các phần tử { 2, 3, 4, 10, 40 } nhập vào từ bàn phím. Viết chương trình tìm kiếm giá trị 10. Sử dụng cài đặt tìm kiếm nhị phân để tìm kiếm.
+
+#include <iostream>
+using namespace std;
+
+int binarySearch(int arr[], int l, int r, int x) {
+    if (r >= l) {
+        int mid = l + (r - l) / 2;
+        if (arr[mid] == x)
+            return mid;
+        if (arr[mid] > x)
+            return binarySearch(arr, l, mid - 1, x);
+        return binarySearch(arr, mid + 1, r, x);
+    }
+    return -1;
+}
+
+int main() {
+    int arr[] = {2, 3, 4, 10, 40};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int x = 10;
+    int result = binarySearch(arr, 0, n - 1, x);
+    if (result == -1) {
+        cout << "Khong tim thay gia tri " << x << " trong mang.";
+    } else {
+        cout << "Gia tri " << x << " co trong mang tai vi tri " << result << ".";
+    }
+    return 0;
+} 
+
+ //Cho mảng gồm các phần tử { 2, 3, 4, 10, 40 } nhập vào từ bàn phím. Viết chương trình tìm kiếm giá trị 10. Sử dụng cài đặt tìm kiếm tuyến tính để tìm kiếm.
+
+#include <iostream>
+using namespace std;
+
+int linearSearch(int arr[], int n, int x) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == x)
+            return i;
+    }
+    return -1;
+}
+
+int main() {
+    int arr[] = {2, 3, 4, 10, 40};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int x = 10;
+    int result = linearSearch(arr, n, x);
+    if (result == -1) {
+        cout << "Khong tim thay gia tri " << x << " trong mang.";
+    } else {
+        cout << "Gia tri " << x << " co trong mang tai vi tri " << result << ".";
+    }
+    return 0;
+}
+
+//Cho mảng gồm các phần tử { 41, 23, 4, 14, 56, 1 } nhập vào từ bàn phím. Viết chương trình để sắp xếp. Sử dụng phương pháp sắp xếp đổi chỗ trực tiếp để sắp xếp
+#include <iostream>
+using namespace std;
+
+void bubbleSort(int arr[], int n) {
+    int i, j;
+    for (i = 0; i < n-1; i++) {
+        for (j = 0; j < n-i-1; j++) {
+            if (arr[j] > arr[j+1])
+                swap(arr[j], arr[j+1]);
+        }
+    }
+}
+
+void printArray(int arr[], int n) {
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+    cout << endl;
+}
+
+int main() {
+    int arr[] = {41, 23, 4, 14, 56, 1};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    cout << "Mang truoc khi sap xep: ";
+    printArray(arr, n);
+    bubbleSort(arr, n);
+    cout << "Mang sau khi sap xep: ";
+    printArray(arr, n);
+    return 0;
+}
+
+//Cho mảng gồm các phần tử { 41, 23, 4, 14, 56, 1 } nhập vào từ bàn phím. Viết chương trình để sắp xếp. Sử dụng phương pháp sắp xếp chọn trực tiếp để sắp xếp
+
+
+#include <iostream>
+using namespace std;
+
+void selectionSort(int arr[], int n) {
+    int i, j, min_idx;
+    for (i = 0; i < n-1; i++) {
+        min_idx = i;
+        for (j = i+1; j < n; j++)
+            if (arr[j] < arr[min_idx])
+                min_idx = j;
+        swap(arr[min_idx], arr[i]);
+    }
+}
+
+void printArray(int arr[], int n) {
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+    cout << endl;
+}
+
+int main() {
+    int arr[] = {41, 23, 4, 14, 56, 1};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    cout << "Mang truoc khi sap xep: ";
+    printArray(arr, n);
+    selectionSort(arr, n);
+    cout << "Mang sau khi sap xep: ";
+    printArray(arr, n);
+    return 0;
+}
+
+//Cho mảng gồm các phần tử { 41, 23, 4, 14, 56, 1 } nhập vào từ bàn phím. Viết chương trình để sắp xếp. Sử dụng phương pháp sắp xếp chèn trực tiếp để sắp xếp
+
+#include <iostream>
+using namespace std;
+
+void insertionSort(int arr[], int n) {
+    int i, key, j;
+    for (i = 1; i < n; i++) {
+        key = arr[i];
+        j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j+1] = arr[j];
+            j = j - 1;
+        }
+        arr[j+1] = key;
+    }
+}
+
+void printArray(int arr[], int n) {
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+    cout << endl;
+}
+
+int main() {
+    int arr[] = {41, 23, 4, 14, 56, 1};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    cout << "Mang truoc khi sap xep: ";
+    printArray(arr, n);
+    insertionSort(arr, n);
+    cout << "Mang sau khi sap xep: ";
+    printArray(arr, n);
+    return 0;
+}
+
+//Cho mảng gồm các phần tử { 41, 23, 4, 14, 56, 1 } nhập vào từ bàn phím. Viết chương trình để sắp xếp. Sử dụng phương pháp sắp xếp nhanh để sắp xếp
+
+#include <iostream>
+using namespace std;
+
+void quickSort(int arr[], int left, int right) {
+    int i = left, j = right;
+    int tmp;
+    int pivot = arr[(left + right) / 2];
+
+    // partition
+    while (i <= j) {
+        while (arr[i] < pivot) i++;
+        while (arr[j] > pivot) j--;
+        if (i <= j) {
+            tmp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = tmp;
+            i++;
+            j--;
+        }
+    };
+
+    // recursion
+    if (left < j) quickSort(arr, left, j);
+    if (i < right) quickSort(arr, i, right);
+}
+
+int main() {
+    int arr[] = {41, 23, 4, 14, 56, 1};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    quickSort(arr, 0, n-1);
+    for (int i=0; i<n; i++) {
+        cout << arr[i] << " ";
+    }
+    return 0;
+}
+
+//Cho mảng 1 chiều các số nguyên. Viết hàm tính tổng các số chẵn trong mảng bằng phương pháp đệ quy.
+#include <iostream>
+using namespace std;
+
+int sumEven(int arr[], int n)
+{
+    // Nếu mảng chỉ có một phần tử, trả về giá trị của nó nếu chẵn, ngược lại trả về 0
+    if (n == 1) {
+        if (arr[0] % 2 == 0)
+            return arr[0];
+        else
+            return 0;
+    }
+    // Nếu mảng có nhiều hơn một phần tử, tính tổng các số chẵn trong mảng con từ phần tử thứ 2 đến cuối, sau đó cộng với phần tử đầu tiên nếu nó là số chẵn
+    else {
+        int sum = sumEven(arr + 1, n - 1);
+        if (arr[0] % 2 == 0)
+            sum += arr[0];
+        return sum;
+    }
+}
+
+int main()
+{
+    int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int sum = sumEven(arr, n);
+    cout << "Tong cac so chan trong mang la: " << sum << endl;
+    return 0;
+}
+
+//Cho mảng 1 chiều các số thực. Viết hàm đếm số lượng giá trị dương trong mảng bằng phương pháp đệ quy.
+#include <iostream>
+using namespace std;
+
+int countPositive(double arr[], int size) {
+    if (size == 0) {
+        return 0;
+    } else if (arr[0] > 0) {
+        return 1 + countPositive(arr + 1, size - 1);
+    } else {
+        return countPositive(arr + 1, size - 1);
+    }
+}
+
+int main() {
+    double arr[] = { -2.5, 1.0, 3.4, -4.7, 0.8, 5.6 };
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    int count = countPositive(arr, size);
+
+    cout << "So luong gia tri duong trong mang la: " << count << endl;
+
+    return 0;
+}
+
+//Cho mảng 1 chiều các số nguyên. Viết hàm đệ quy xuất mảng.
+#include <iostream>
+using namespace std;
+
+// Hàm đệ quy xuất mảng
+void xuatMang(int arr[], int n)
+{
+    if (n == 0) // Nếu chỉ số cuối cùng của mảng là 0 thì kết thúc đệ quy
+        return;
+    xuatMang(arr, n - 1); // Gọi đệ quy với mảng có độ dài giảm đi 1
+    cout << arr[n - 1] << " "; // In phần tử cuối cùng của mảng
+}
+
+int main()
+{
+    int arr[] = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    xuatMang(arr, n);
+    return 0;
+}
+
+//Cho mảng 1 chiều các số thực. Hãy viết hàm đệ quy đếm số lượng giá trị dương có trong mảng
+#include <iostream>
+using namespace std;
+
+// Hàm đệ quy đếm số lượng giá trị dương trong mảng
+int countPositive(float arr[], int n) {
+    // Trường hợp cơ sở: mảng rỗng
+    if (n == 0) {
+        return 0;
+    }
+    // Trường hợp đệ quy: đếm số lượng giá trị dương trong mảng con arr[1...n-1]
+    int count = countPositive(arr + 1, n - 1);
+    // Nếu phần tử đầu tiên của mảng arr là số dương thì tăng biến đếm lên 1
+    if (arr[0] > 0) {
+        count++;
+    }
+    return count;
+}
+
+int main() {
+    float arr[] = {1.2, -3.4, 5.6, 0, -7.8, 9.0};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int positiveCount = countPositive(arr, n);
+    cout << "So luong gia tri duong trong mang la: " << positiveCount << endl;
+    return 0;
+}
+
+//Hãy khai báo cấu trúc dữ liệu của cây nhị phân các số nguyên
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+
+
+//Cho mảng 1 chiều các số thực. Hãy viết hàm đệ quy tính tổng các giá trị dương có trong mảng
+#include <iostream>
+using namespace std;
+
+// Hàm đệ quy tính tổng các giá trị dương trong mảng
+double positiveSum(double arr[], int n) {
+    // Trường hợp cơ sở
+    if (n == 0) {
+        return 0;
+    }
+
+    // Trường hợp đệ quy
+    double sum = positiveSum(arr, n - 1);
+    if (arr[n - 1] > 0) {
+        sum += arr[n - 1];
+    }
+    return sum;
+}
+
+int main() {
+    double arr[] = {1.5, -2.7, 3.8, -4.6, 5.9, -6.1};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    double sum = positiveSum(arr, n);
+    cout << "Tong cac gia tri duong trong mang: " << sum << endl;
+    return 0;
+}
+
+//Cho mảng 1 chiều các số thực. Hãy viết hàm đệ quy tìm giá trị lớn nhất có trong mảng
+#include <iostream>
+using namespace std;
+
+// Hàm đệ quy tìm giá trị lớn nhất trong mảng
+double findMax(double arr[], int n) {
+    // Trường hợp cơ sở
+    if (n == 1) {
+        return arr[0];
+    }
+
+    // Trường hợp đệ quy
+    double max = findMax(arr, n - 1);
+    if (arr[n - 1] > max) {
+        max = arr[n - 1];
+    }
+    return max;
+}
+
+int main() {
+    double arr[] = {2.5, 7.8, 1.6, 9.2, 4.3, 5.1};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    double max = findMax(arr, n);
+    cout << "Gia tri lon nhat trong mang la: " << max << endl;
+
+    return 0;
+}
+
+//Tính T(n) = 1 x 2 x 3 x … x n
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Nhap n: ";
+    cin >> n;
+
+    int T = 1;
+    for (int i = 1; i <= n; i++) {
+        T *= i;
+    }
+
+    cout << "T(" << n << ") = " << T << endl;
+
+    return 0;
+}
+
+
